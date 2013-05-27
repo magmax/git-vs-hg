@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# using the same branch
-
 set -x
 
 SERVER=/tmp/server-hg
@@ -12,7 +10,6 @@ WC2=/tmp/wc2-hg
 rm -rf $SERVER $WC1 $WC2 || true
 
 
-#remote repository init.
 hg init $SERVER
 echo -e '[hooks]\npretxnchangegroup.sleep=sleep 2' > $SERVER/.hg/hgrc
 

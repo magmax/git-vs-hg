@@ -1,22 +1,27 @@
 #!/bin/bash
 
-# using the same branch
-
 set -x
 
 WC1=/tmp/wc1-hg
 
-#clean up
 rm -rf $WC1 || true
 
 
-#remote repository init.
 hg init $WC1
 
-hg add selenium-java-2.31.0.zip
+seq 1000000 > $WC1/file
+ls -lh $WC1/file
+hg -R $WC1 add $WC1/file
 
-hg commit -m "initial"
-du -h
-hg mv selenium-java-2.31.0.zip  selenium-java-2.31.0.b.zip
-hg commit -m "second"
-du -h
+hg -R $WC1 commit -m "initial"
+du -hs $WC1
+
+hg -R $WC1 mv $WC1/file $WC1/example
+hg -R $WC1 commit -m "second"
+du -hs $WC1
+
+hg -R $WC1 mv $WC1/example $WC1/file
+hg -R $WC1 commit -m "third"
+du -hs $WC1
+
+hg -R $WC1 log $WC1/file
