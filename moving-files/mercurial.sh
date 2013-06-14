@@ -24,4 +24,4 @@ hg -R $WC1 mv $WC1/example $WC1/file
 hg -R $WC1 commit -m "third"
 du -hs $WC1
 
-hg -R $WC1 log $WC1/file
+hg -R $WC1 log $WC1/file --follow
